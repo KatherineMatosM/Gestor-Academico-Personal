@@ -27,7 +27,7 @@ const startServer = async () => {
         
         try {
           await closePool();
-          logger.info('Conexión a la base de datos cerrada');
+          logger.info('Conexion a la base de datos cerrada');
           process.exit(0);
         } catch (error) {
           logger.error('Error al cerrar la conexión a la base de datos', error);
