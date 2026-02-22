@@ -101,26 +101,3 @@ npm start
 ```
 
 El navegador abrirá automáticamente `http://localhost:3000`
-
----
-
-## Solución de Problemas
-
-**Error: Cannot connect to SQL Server**
-- Verifica que SQL Server esté ejecutándose
-- Confirma el nombre del servidor en `.env`
-- Habilita TCP/IP en SQL Server Configuration Manager
-- Verifica que el driver ODBC esté instalado
-
-**Error: Port already in use**
-```bash
-# Windows
-netstat -ano | findstr :5001
-taskkill /PID [PID] /F
-```
-
-**Error: Module not found**
-```bash
-cd server && npm install
-cd client && npm install
-```
