@@ -1,5 +1,5 @@
 {
-  "name": "gestor-academico-prueba1",
+  "name": "gestor-academico",
   "version": "1.0.0",
   "description": "Gestor académico full-stack con React y Node.js",
   "scripts": {
