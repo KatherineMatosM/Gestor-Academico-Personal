@@ -176,7 +176,6 @@ export default function Calendario() {
       </div>
 
       <div style={styles.card}>
-        {/* Month nav */}
         <div style={{ 
           display: "flex", 
           alignItems: "center", 
@@ -219,7 +218,6 @@ export default function Calendario() {
           </button>
         </div>
 
-        {/* Day headers */}
         <div style={{ 
           display: "grid", 
           gridTemplateColumns: "repeat(7, 1fr)", 
@@ -242,7 +240,6 @@ export default function Calendario() {
           ))}
         </div>
 
-        {/* Days grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 4 }}>
           {Array.from({ length: (firstDay === 0 ? 6 : firstDay - 1) }).map((_, i) => (
             <div key={"e" + i} />
@@ -266,8 +263,8 @@ export default function Calendario() {
                 style={{ 
                   height: 96, 
                   borderRadius: 10, 
-                  border: `1px solid ${isToday ? C.orchid : C.grayLight}`, 
-                  background: isToday ? C.orchid + "08" : C.white, 
+                  border: `1px solid ${isToday ? C.blackCherry : C.grayLight}`, 
+                  background: isToday ? C.blackCherry + "08" : C.white, 
                   padding: "4px 5px", 
                   cursor: "pointer", 
                   position: "relative", 
@@ -284,7 +281,7 @@ export default function Calendario() {
                   <span style={{ 
                     fontSize: 12, 
                     fontWeight: isToday ? 800 : 600, 
-                    color: isToday ? C.orchid : C.text 
+                    color: isToday ? C.blackCherry : C.text 
                   }}>
                     {day}
                   </span>
@@ -293,7 +290,7 @@ export default function Calendario() {
                       width: 6, 
                       height: 6, 
                       borderRadius: "50%", 
-                      background: events.examenes.length > 0 ? C.orchid : C.sky 
+                      background: events.examenes.length > 0 ? C.blackCherry : C.skyBlue 
                     }} />
                   )}
                 </div>
@@ -302,8 +299,8 @@ export default function Calendario() {
                     key={"ex" + e.id} 
                     style={{ 
                       fontSize: 9, 
-                      background: C.orchid + "22", 
-                      color: C.orchidDark, 
+                      background: C.blackCherry + "22", 
+                      color: C.blackCherryDark, 
                       padding: "1px 4px", 
                       borderRadius: 4, 
                       marginTop: 2, 
@@ -321,8 +318,8 @@ export default function Calendario() {
                     key={"t" + t.id} 
                     style={{ 
                       fontSize: 9, 
-                      background: C.sky + "22", 
-                      color: C.sky, 
+                      background: C.skyBlue + "22", 
+                      color: C.skyBlue, 
                       padding: "1px 4px", 
                       borderRadius: 4, 
                       marginTop: 2, 
@@ -344,7 +341,6 @@ export default function Calendario() {
           })}
         </div>
 
-        {/* Legend */}
         <div style={{ 
           display: "flex", 
           gap: 18, 
@@ -356,7 +352,7 @@ export default function Calendario() {
               width: 12, 
               height: 12, 
               borderRadius: 3, 
-              background: C.orchid + "33" 
+              background: C.blackCherry + "33" 
             }} />
             <span style={{ fontSize: 12, color: C.textLight }}>Exámenes</span>
           </div>
@@ -365,14 +361,13 @@ export default function Calendario() {
               width: 12, 
               height: 12, 
               borderRadius: 3, 
-              background: C.sky + "33" 
+              background: C.skyBlue + "33" 
             }} />
             <span style={{ fontSize: 12, color: C.textLight }}>Tareas</span>
           </div>
         </div>
       </div>
 
-      {/* Day detail panel */}
       {selectedDay && (() => {
         const events = getEventsForDay(selectedDay);
         const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`;
@@ -411,7 +406,7 @@ export default function Calendario() {
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={styles.badge(C.orchid)}>Examen</span>
+                  <span style={styles.badge(C.blackCherry)}>Examen</span>
                   <span style={{ fontSize: 13, fontWeight: 600 }}>{e.titulo}</span>
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>
@@ -452,7 +447,7 @@ export default function Calendario() {
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={styles.badge(C.sky)}>Tarea</span>
+                  <span style={styles.badge(C.skyBlue)}>Tarea</span>
                   <span style={{ fontSize: 13, fontWeight: 600 }}>{t.titulo}</span>
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>
@@ -488,7 +483,6 @@ export default function Calendario() {
         );
       })()}
 
-      {/* Modal: agregar evento */}
       <Modal 
         open={modal} 
         onClose={() => setModal(false)} 
@@ -536,7 +530,6 @@ export default function Calendario() {
         </div>
       </Modal>
 
-      {/* Modal: editar tarea */}
       <Modal 
         open={editTarget?.tipo === "tarea"} 
         onClose={() => setEditTarget(null)} 
@@ -601,7 +594,6 @@ export default function Calendario() {
         )}
       </Modal>
 
-      {/* Modal: editar examen */}
       <Modal 
         open={editTarget?.tipo === "examen"} 
         onClose={() => setEditTarget(null)} 
@@ -656,7 +648,7 @@ export default function Calendario() {
                 max="100" 
                 value={editTarget.form.preparacion} 
                 onChange={e => setEditForm("preparacion", Number(e.target.value))} 
-                style={{ width: "100%", accentColor: C.orchid }} 
+                style={{ width: "100%", accentColor: C.blackCherry }} 
               />
             </FormRow>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>

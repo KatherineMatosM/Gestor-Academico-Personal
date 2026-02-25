@@ -85,7 +85,6 @@ export default function Configuracion() {
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
-        {/* Perfil */}
         <div style={{ ...styles.card, display: "flex", flexDirection: "column" }}>
           <div style={{ 
             display: "flex", 
@@ -99,7 +98,7 @@ export default function Configuracion() {
               width: 60, 
               height: 60, 
               borderRadius: 16, 
-              background: `linear-gradient(135deg, ${C.orchidLight}, ${C.orchidLight})`, 
+              background: `linear-gradient(135deg, ${C.blackCherryLight}, ${C.blackCherryLight})`, 
               display: "flex", 
               alignItems: "center", 
               justifyContent: "center" 
@@ -137,7 +136,7 @@ export default function Configuracion() {
             {saved && (
               <span style={{ 
                 fontSize: 13, 
-                color: C.seafoam, 
+                color: C.blueJeans, 
                 fontWeight: 600, 
                 display: "flex", 
                 alignItems: "center", 
@@ -149,7 +148,6 @@ export default function Configuracion() {
           </div>
         </div>
 
-        {/* Contraseña */}
         <div style={{ ...styles.card, display: "flex", flexDirection: "column" }}>
           <div style={{ 
             display: "flex", 
@@ -163,12 +161,12 @@ export default function Configuracion() {
               width: 40, 
               height: 40, 
               borderRadius: 12, 
-              background: C.orchid + "18", 
+              background: C.blackCherry + "18", 
               display: "flex", 
               alignItems: "center", 
               justifyContent: "center" 
             }}>
-              <Lock size={20} color={C.orchid} />
+              <Lock size={20} color={C.blackCherry} />
             </div>
             <div>
               <p style={{ margin: 0, fontSize: 15, fontWeight: 700 }}>
@@ -283,7 +281,7 @@ export default function Configuracion() {
             {passSaved && (
               <span style={{ 
                 fontSize: 13, 
-                color: C.seafoam, 
+                color: C.blueJeans, 
                 fontWeight: 600, 
                 display: "flex", 
                 alignItems: "center", 

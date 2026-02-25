@@ -56,11 +56,10 @@ export default function Dashboard() {
     { name: "Completadas", value: tareas.filter(t => t.estado === "Completada").length },
   ];
 
-  // CORREGIDO: Datos reales de la semana actual
   const weekData = useMemo(() => {
     const today = new Date();
     const weekStart = new Date(today);
-    weekStart.setDate(today.getDate() - today.getDay() + 1); // Lunes de esta semana
+    weekStart.setDate(today.getDate() - today.getDay() + 1);
 
     return ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d, i) => {
       const currentDay = new Date(weekStart);
@@ -79,10 +78,10 @@ export default function Dashboard() {
   }, [tareas, examenes]);
 
   const statCards = [
-    { label: "Promedio General", value: promedioGeneral, unit: "/100", accent: C.orchid, icon: <BarChart2 size={22} /> },
-    { label: "Materias Activas", value: activas.length, unit: "", accent: C.seafoam, icon: <BookOpen size={22} /> },
-    { label: "Tareas Pendientes", value: pendientes, unit: "", accent: C.sky, icon: <CheckSquare size={22} /> },
-    { label: "Exámenes Próximos", value: proximosExamenes.length, unit: "", accent: C.sugar, icon: <Calendar size={22} /> },
+    { label: "Promedio General", value: promedioGeneral, unit: "/100", accent: C.blackCherry, icon: <BarChart2 size={22} /> },
+    { label: "Materias Activas", value: activas.length, unit: "", accent: C.blueJeans, icon: <BookOpen size={22} /> },
+    { label: "Tareas Pendientes", value: pendientes, unit: "", accent: C.skyBlue, icon: <CheckSquare size={22} /> },
+    { label: "Exámenes Próximos", value: proximosExamenes.length, unit: "", accent: C.silverStars, icon: <Calendar size={22} /> },
   ];
 
   return (
@@ -92,7 +91,6 @@ export default function Dashboard() {
         Resumen de tu actividad académica
       </p>
 
-      {/* Stat Cards */}
       <div style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", 
@@ -104,7 +102,6 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* Charts row */}
       <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 18, marginBottom: 24 }}>
         <div style={styles.card}>
           <h4 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 700 }}>
@@ -160,7 +157,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Week activity + upcoming exams */}
       <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 18 }}>
         <div style={styles.card}>
           <h4 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 700 }}>
@@ -170,12 +166,12 @@ export default function Dashboard() {
             <AreaChart data={weekData}>
               <defs>
                 <linearGradient id="gTareas" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={C.orchid} stopOpacity={0.25} />
-                  <stop offset="95%" stopColor={C.orchid} stopOpacity={0} />
+                  <stop offset="5%" stopColor={C.blackCherry} stopOpacity={0.25} />
+                  <stop offset="95%" stopColor={C.blackCherry} stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="gExamenes" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={C.sky} stopOpacity={0.25} />
-                  <stop offset="95%" stopColor={C.sky} stopOpacity={0} />
+                  <stop offset="5%" stopColor={C.skyBlue} stopOpacity={0.25} />
+                  <stop offset="95%" stopColor={C.skyBlue} stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke={C.grayLight} />
@@ -186,7 +182,7 @@ export default function Dashboard() {
               <Area 
                 type="monotone" 
                 dataKey="tareas" 
-                stroke={C.orchid} 
+                stroke={C.blackCherry} 
                 fill="url(#gTareas)" 
                 strokeWidth={2} 
                 name="Tareas" 
@@ -194,7 +190,7 @@ export default function Dashboard() {
               <Area 
                 type="monotone" 
                 dataKey="exámenes" 
-                stroke={C.sky} 
+                stroke={C.skyBlue} 
                 fill="url(#gExamenes)" 
                 strokeWidth={2} 
                 name="Exámenes" 
@@ -225,12 +221,12 @@ export default function Dashboard() {
                 width: 38, 
                 height: 38, 
                 borderRadius: 10, 
-                background: C.sky + "18", 
+                background: C.skyBlue + "18", 
                 display: "flex", 
                 alignItems: "center", 
                 justifyContent: "center" 
               }}>
-                <Calendar size={18} color={C.sky} />
+                <Calendar size={18} color={C.skyBlue} />
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ margin: 0, fontSize: 13, fontWeight: 600 }}>{e.titulo}</p>
@@ -238,7 +234,7 @@ export default function Dashboard() {
                   {formatDate(e.fecha)} · {e.hora}
                 </p>
               </div>
-              <span style={styles.badge(C.sky)}>{e.preparacion}%</span>
+              <span style={styles.badge(C.skyBlue)}>{e.preparacion}%</span>
             </div>
           ))}
         </div>

@@ -46,7 +46,6 @@ export default function Examenes() {
 
   const open = (e) => {
     if (e) {
-      // Formatear fecha correctamente
       let fechaFormateada = e.fecha;
       if (e.fecha) {
         if (e.fecha.includes('T')) {
@@ -139,7 +138,7 @@ export default function Examenes() {
     }
   };
 
-  const prepColor = (v) => v >= 70 ? C.seafoam : v >= 40 ? C.sky : C.orchid;
+  const prepColor = (v) => v >= 70 ? C.blueJeans : v >= 40 ? C.skyBlue : C.blackCherry;
 
   return (
     <div>
@@ -168,7 +167,6 @@ export default function Examenes() {
         {examenes.map(e => {
           const mat = materias.find(m => m.id === e.materiaId);
           
-          // Formatear fecha para comparación
           let fechaComparar = e.fecha;
           if (e.fecha && e.fecha.includes('T')) {
             fechaComparar = e.fecha.split('T')[0];
@@ -225,7 +223,6 @@ export default function Examenes() {
                 Temas: {e.temas || "—"}
               </p>
 
-              {/* Prep bar */}
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ 
                   fontSize: 11, 
@@ -266,7 +263,7 @@ export default function Examenes() {
                   gap: 8 
                 }}>
                   <span style={{ fontSize: 12, color: C.textLight }}>Nota:</span>
-                  <span style={{ fontSize: 18, fontWeight: 800, color: C.orchid }}>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: C.blackCherry }}>
                     {e.nota}
                   </span>
                   {e.autoevaluacion && (
@@ -279,7 +276,7 @@ export default function Examenes() {
 
               {isPast && e.nota === null && (
                 <span style={{ 
-                  ...styles.badge(C.sugar), 
+                  ...styles.badge(C.silverStars), 
                   marginTop: 8, 
                   display: "inline-block" 
                 }}>
@@ -347,7 +344,7 @@ export default function Examenes() {
             max="100" 
             value={form.preparacion} 
             onChange={e => setForm({ ...form, preparacion: Number(e.target.value) })} 
-            style={{ width: "100%", accentColor: C.orchid }} 
+            style={{ width: "100%", accentColor: C.blackCherry }} 
           />
         </FormRow>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>

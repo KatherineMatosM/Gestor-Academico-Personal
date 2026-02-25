@@ -97,7 +97,7 @@ export default function Apuntes() {
   };
 
   const remove = async (id, e) => {
-    e.stopPropagation(); // Evitar que se abra el modal al eliminar
+    e.stopPropagation();
     if (!window.confirm("¿Eliminar este apunte?")) return;
     try {
       await apuntesService.deleteApunte(id);
@@ -131,7 +131,6 @@ export default function Apuntes() {
         </button>
       </div>
 
-      {/* Search */}
       <div style={{ position: "relative", marginBottom: 18, maxWidth: 340 }}>
         <Search 
           size={15} 
@@ -179,7 +178,7 @@ export default function Apuntes() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <span style={styles.badge(C.orchid)}>{mat?.codigo || "—"}</span>
+                <span style={styles.badge(C.blackCherry)}>{mat?.codigo || "—"}</span>
                 <div style={{ display: "flex", gap: 4 }}>
                   <button 
                     onClick={(e) => {

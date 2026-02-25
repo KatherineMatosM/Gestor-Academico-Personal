@@ -45,7 +45,6 @@ export default function Tareas() {
 
   const open = (t) => {
     if (t) {
-      // Asegurar que la fecha esté en formato YYYY-MM-DD
       let fechaFormateada = t.fecha;
       if (t.fecha && t.fecha.includes('T')) {
         fechaFormateada = t.fecha.split('T')[0];
@@ -119,8 +118,8 @@ export default function Tareas() {
   };
 
   const filtered = filter === "Todas" ? tareas : tareas.filter(t => t.estado === filter);
-  const prioColor = { Alta: C.orchid, Media: C.sky, Baja: C.seafoam };
-  const stateColor = { Pendiente: C.sugar, "En Progreso": C.sky, Completada: C.seafoam };
+  const prioColor = { Alta: C.blackCherry, Media: C.skyBlue, Baja: C.blueJeans };
+  const stateColor = { Pendiente: C.silverStars, "En Progreso": C.skyBlue, Completada: C.blueJeans };
 
   return (
     <div>
@@ -141,7 +140,6 @@ export default function Tareas() {
         </button>
       </div>
 
-      {/* Filters */}
       <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
         {["Todas", "Pendiente", "En Progreso", "Completada"].map(f => (
           <button 
@@ -161,7 +159,6 @@ export default function Tareas() {
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {filtered.map(t => {
           const materia = materias.find(m => m.id === t.materiaId);
-          // Formatear fecha para mostrar
           let fechaMostrar = t.fecha;
           if (t.fecha && t.fecha.includes('T')) {
             fechaMostrar = t.fecha.split('T')[0];

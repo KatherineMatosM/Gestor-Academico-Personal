@@ -108,28 +108,28 @@ export default function Reportes() {
       desc: "Resumen completo de tu situación académica incluyendo materias, tareas y exámenes.", 
       icon: <Layers size={24} />, 
       type: "general", 
-      color: C.orchid 
+      color: C.blackCherry 
     },
     { 
       title: "Reporte por Materia", 
       desc: "Detalle desglosado de cada materia con sus tareas y exámenes asociados.", 
       icon: <BookOpen size={24} />, 
       type: "materia", 
-      color: C.seafoam 
+      color: C.blueJeans 
     },
     { 
       title: "Reporte de Tareas", 
       desc: "Estado actual de todas tus tareas, filtrado por estado y prioridad.", 
       icon: <CheckSquare size={24} />, 
       type: "tareas", 
-      color: C.sky 
+      color: C.skyBlue 
     },
     { 
       title: "Reporte de Exámenes", 
       desc: "Historial de exámenes con notas, preparación y autoevaluación.", 
       icon: <FileText size={24} />, 
       type: "examenes", 
-      color: C.sugar 
+      color: C.silverStars 
     },
   ];
 

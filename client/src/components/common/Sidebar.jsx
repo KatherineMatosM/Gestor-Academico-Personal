@@ -23,7 +23,7 @@ export default function Sidebar({ collapsed, view, setView, onLogout }) {
       <div style={styles.sidebarHeader}>
         <div style={styles.sidebarLogo(collapsed)}>
           <div style={styles.logoCircle}>
-            <BookMarked size={18} color={C.white} />
+            <BookMarked size={18} color={C.darkblue} />
           </div>
           {!collapsed && <span style={styles.logoText}>Gestor Académico</span>}
         </div>

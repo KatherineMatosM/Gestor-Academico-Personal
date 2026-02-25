@@ -68,7 +68,6 @@ export default function Progreso() {
         Indicadores y evolución de tu rendimiento
       </p>
 
-      {/* Top stats */}
       <div style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", 
@@ -76,9 +75,9 @@ export default function Progreso() {
         marginBottom: 22 
       }}>
         {[
-          { label: "Promedio General", val: promGeneral, unit: "/100", color: C.orchid },
-          { label: "Tareas Completadas", val: `${completadas}/${totalTareas}`, unit: "", color: C.seafoam },
-          { label: "Prom. Exámenes", val: promExamenes, unit: "/100", color: C.sky },
+          { label: "Promedio General", val: promGeneral, unit: "/100", color: C.blackCherry },
+          { label: "Tareas Completadas", val: `${completadas}/${totalTareas}`, unit: "", color: C.blueJeans },
+          { label: "Prom. Exámenes", val: promExamenes, unit: "/100", color: C.skyBlue },
           { label: "Materias en Riesgo", val: atRisk.length, unit: "", color: "#e85d5d" },
         ].map((s, i) => (
           <div key={i} style={styles.statCard(s.color)}>
@@ -107,7 +106,6 @@ export default function Progreso() {
         ))}
       </div>
 
-      {/* Risk alerts */}
       {(atRisk.length > 0 || warning.length > 0) && (
         <div style={{ marginBottom: 20 }}>
           {atRisk.map(m => (
@@ -153,7 +151,6 @@ export default function Progreso() {
         </div>
       )}
 
-      {/* Charts */}
       <div style={{ display: "grid", gridTemplateColumns: "1.7fr 1fr", gap: 18 }}>
         <div style={styles.card}>
           <h4 style={{ margin: "0 0 14px", fontSize: 15, fontWeight: 700 }}>
@@ -168,9 +165,9 @@ export default function Progreso() {
               <Line 
                 type="monotone" 
                 dataKey="nota" 
-                stroke={C.orchid} 
+                stroke={C.blackCherry} 
                 strokeWidth={3} 
-                dot={{ fill: C.orchid, r: 5 }} 
+                dot={{ fill: C.blackCherry, r: 5 }} 
               />
             </LineChart>
           </ResponsiveContainer>
@@ -193,7 +190,7 @@ export default function Progreso() {
                 labelLine={{ stroke: C.grayMid }} 
                 fontSize={11}
               >
-                <Cell fill={C.seafoam} />
+                <Cell fill={C.blueJeans} />
                 <Cell fill={C.grayLight} />
               </Pie>
               <Tooltip contentStyle={{ borderRadius: 10, fontSize: 13 }} />
@@ -202,7 +199,6 @@ export default function Progreso() {
         </div>
       </div>
 
-      {/* Per-materia progress bars */}
       <div style={{ ...styles.card, marginTop: 18 }}>
         <h4 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 700 }}>
           Detalle por Materia
@@ -218,7 +214,7 @@ export default function Progreso() {
               <span style={{ 
                 fontSize: 13, 
                 fontWeight: 800, 
-                color: m.nota >= 75 ? C.seafoam : m.nota >= 60 ? C.sky : "#e85d5d" 
+                color: m.nota >= 75 ? C.blueJeans : m.nota >= 60 ? C.skyBlue : "#e85d5d" 
               }}>
                 {m.nota}/100
               </span>
@@ -228,7 +224,7 @@ export default function Progreso() {
                 width: `${m.nota}%`, 
                 height: "100%", 
                 borderRadius: 4, 
-                background: m.nota >= 75 ? C.seafoam : m.nota >= 60 ? C.sky : "#e85d5d", 
+                background: m.nota >= 75 ? C.blueJeans : m.nota >= 60 ? C.skyBlue : "#e85d5d", 
                 transition: "width 0.5s" 
               }} />
             </div>

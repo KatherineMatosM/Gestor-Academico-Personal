@@ -13,7 +13,7 @@ export const styles = {
   sidebar: (collapsed) => ({
     width: collapsed ? 68 : 240, 
     minWidth: collapsed ? 68 : 240, 
-    background: C.coffee,
+    background: C.darkblue,
     display: "flex", 
     flexDirection: "column", 
     transition: "width 0.3s ease, min-width 0.3s ease",
@@ -42,7 +42,7 @@ export const styles = {
     width: 36, 
     height: 36, 
     borderRadius: 10, 
-    background: `linear-gradient(135deg, ${C.orchidLight}, ${C.orchidLight})`, 
+    background: `linear-gradient(135deg, ${C.blackCherryLight}, ${C.blackCherryLight})`, 
     display: "flex", 
     alignItems: "center", 
     justifyContent: "center", 
@@ -72,8 +72,8 @@ export const styles = {
     cursor: "pointer", 
     margin: collapsed ? "2px 8px" : "2px 12px", 
     borderRadius: 10,
-    background: active ? `rgba(212,99,161,0.18)` : "transparent",
-    color: active ? C.orchid : "rgba(255,255,255,0.65)", 
+    background: active ? `rgba(115,15,26,0.18)` : "transparent",
+    color: active ? C.blackCherry : "rgba(255,255,255,0.65)", 
     transition: "all 0.2s",
     fontSize: 14, 
     fontWeight: active ? 600 : 500, 
@@ -132,11 +132,11 @@ export const styles = {
     fontWeight: 600, 
     fontSize: 13, 
     transition: "all 0.2s",
-    background: variant === "primary" ? `linear-gradient(135deg, ${C.orchid}, ${C.orchidDark})` : 
+    background: variant === "primary" ? `linear-gradient(135deg, ${C.blackCherry}, ${C.blackCherryDark})` : 
                 variant === "secondary" ? C.grayLight : 
                 variant === "danger" ? "#e85d5d" : "transparent",
     color: variant === "primary" || variant === "danger" ? C.white : 
-           variant === "secondary" ? C.text : C.orchid
+           variant === "secondary" ? C.text : C.blackCherry
   }),
   
   input: { 

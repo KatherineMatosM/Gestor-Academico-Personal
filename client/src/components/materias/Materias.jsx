@@ -84,8 +84,8 @@ export default function Materias() {
     }
   };
 
-  const diffColor = { Alta: C.orchid, Media: C.sky, Baja: C.seafoam };
-  const stateColor = { Activa: C.seafoam, Completada: C.sky, Suspendida: C.sugar };
+  const diffColor = { Alta: C.blackCherry, Media: C.skyBlue, Baja: C.blueJeans };
+  const stateColor = { Activa: C.blueJeans, Completada: C.skyBlue, Suspendida: C.silverStars };
 
   return (
     <div>
@@ -159,7 +159,7 @@ export default function Materias() {
                   marginLeft: "auto", 
                   fontSize: 18, 
                   fontWeight: 800, 
-                  color: C.orchid 
+                  color: C.blackCherry 
                 }}>
                   {m.nota}
                   <span style={{ fontSize: 11, fontWeight: 500, color: C.textLight }}>

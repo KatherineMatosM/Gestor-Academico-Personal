@@ -7,8 +7,6 @@ export const colors = {
   skyBlueLight: "#c5dcea",  
   blueJeans: "#325978",      
   blueJeansLight: "#4a7a9b",  
-  skyBlue: "#A7CADF",           
-  skyBlueLight: "#c5dcea",      
   white: "#ffffff",
   offWhite: "#f7f9fb",
   grayLight: "#e8edf1",
@@ -18,9 +16,9 @@ export const colors = {
 };
 
 export const PIE_COLORS = [
-  colors.orchid,
-  colors.seafoam,
-  colors.sky,
-  colors.sugar,
-  colors.coffee
+  colors.blackCherry,
+  colors.blueJeans,
+  colors.skyBlue,
+  colors.silverStars,
+  colors.darkblue
 ];
