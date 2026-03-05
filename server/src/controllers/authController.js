@@ -39,8 +39,17 @@ class AuthController {
 
   async changePassword(req, res, next) {
     try {
-      const result = await authService.changePassword(req.userId, req.body);
-      res.json(result);
+      await authService.changePassword(req.userId, req.body);
+      res.json({ success: true, message: 'Contraseña actualizada correctamente' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteAccount(req, res, next) {
+    try {
+      await authService.deleteAccount(req.userId);
+      res.json({ success: true, message: 'Cuenta eliminada correctamente' });
     } catch (error) {
       next(error);
     }
