@@ -65,40 +65,24 @@ class AuthService {
   }
 
   async changePassword(userId, passwordData) {
-    const { currentPassword, newPassword } = passwordData;
-
-    if (!currentPassword || !newPassword) {
-      throw new ValidationError('Se requiere la contraseña actual y la nueva');
-    }
-
-    if (newPassword.length < 4) {
-      throw new ValidationError('La nueva contraseña debe tener al menos 4 caracteres');
-    }
-
-    // Obtener usuario actual
     const user = await authRepository.findById(userId);
     
     if (!user) {
       throw new UnauthorizedError('Usuario no encontrado');
     }
 
-    // Verificar contraseña actual
-    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+    const isPasswordValid = await bcrypt.compare(passwordData.currentPassword, user.password);
     
     if (!isPasswordValid) {
-      throw new UnauthorizedError('La contraseña actual es incorrecta');
+      throw new ValidationError('Contraseña actual incorrecta');
     }
 
-    // Hashear nueva contraseña
-    const hashedPassword = await bcrypt.hash(newPassword, authConfig.bcryptRounds);
-
-    // Actualizar contraseña
+    const hashedPassword = await bcrypt.hash(passwordData.newPassword, authConfig.bcryptRounds);
     await authRepository.updatePassword(userId, hashedPassword);
+  }
 
-    return {
-      success: true,
-      message: 'Contraseña actualizada correctamente'
-    };
+  async deleteAccount(userId) {
+    await authRepository.delete(userId);
   }
 
   generateToken(user) {
