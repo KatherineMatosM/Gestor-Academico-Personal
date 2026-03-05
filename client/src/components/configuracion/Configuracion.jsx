@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Lock, Eye, EyeOff, CheckCircle2 } from "lucide-react";
+import { User, Lock, Eye, EyeOff, CheckCircle2, Trash2 } from "lucide-react";
 import FormRow from "../common/FormRow";
 import { colors as C } from "../../styles/colors";
 import { styles } from "../../styles/styles";
@@ -8,7 +8,7 @@ import { validateEmail } from "../../utils/validators";
 import * as authService from "../../services/authService";
 
 export default function Configuracion() {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, logout } = useAuth();
   const [form, setForm] = useState({ nombre: user.nombre, email: user.email });
   const [saved, setSaved] = useState(false);
 
@@ -19,6 +19,10 @@ export default function Configuracion() {
   const [showNueva, setShowNueva] = useState(false);
   const [showConfirma, setShowConfirma] = useState(false);
   const [loadingPassword, setLoadingPassword] = useState(false);
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState("");
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   const save = async () => {
     if (!validateEmail(form.email)) {
@@ -35,7 +39,6 @@ export default function Configuracion() {
       setSaved(true);
       setTimeout(() => setSaved(false), 2200);
     } catch (error) {
-      console.error('Error actualizando perfil:', error);
       alert("Error al actualizar el perfil: " + (error.response?.data?.message || error.message));
     }
   };
@@ -70,10 +73,26 @@ export default function Configuracion() {
       setPassSaved(true);
       setTimeout(() => setPassSaved(false), 2200);
     } catch (error) {
-      console.error('Error cambiando contraseña:', error);
       setPassError(error.response?.data?.message || "Error al cambiar la contraseña");
     } finally {
       setLoadingPassword(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirm !== "ELIMINAR") {
+      alert('Debes escribir "ELIMINAR" para confirmar');
+      return;
+    }
+
+    setLoadingDelete(true);
+    try {
+      await authService.deleteAccount();
+      logout();
+    } catch (error) {
+      alert("Error al eliminar cuenta: " + (error.response?.data?.message || error.message));
+    } finally {
+      setLoadingDelete(false);
     }
   };
 
@@ -85,6 +104,7 @@ export default function Configuracion() {
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+        {/* Perfil */}
         <div style={{ ...styles.card, display: "flex", flexDirection: "column" }}>
           <div style={{ 
             display: "flex", 
@@ -136,7 +156,7 @@ export default function Configuracion() {
             {saved && (
               <span style={{ 
                 fontSize: 13, 
-                color: C.blueJeans, 
+                color: C.seafoam, 
                 fontWeight: 600, 
                 display: "flex", 
                 alignItems: "center", 
@@ -148,6 +168,7 @@ export default function Configuracion() {
           </div>
         </div>
 
+        {/* Contraseña */}
         <div style={{ ...styles.card, display: "flex", flexDirection: "column" }}>
           <div style={{ 
             display: "flex", 
@@ -178,7 +199,7 @@ export default function Configuracion() {
             </div>
           </div>
 
-          <FormRow label="Contraseña actual *">
+          <FormRow label="Contraseña actual">
             <div style={{ position: "relative" }}>
               <input 
                 style={{ ...styles.input, paddingRight: 38 }} 
@@ -205,7 +226,7 @@ export default function Configuracion() {
             </div>
           </FormRow>
 
-          <FormRow label="Nueva contraseña *">
+          <FormRow label="Nueva contraseña">
             <div style={{ position: "relative" }}>
               <input 
                 style={{ ...styles.input, paddingRight: 38 }} 
@@ -232,7 +253,7 @@ export default function Configuracion() {
             </div>
           </FormRow>
 
-          <FormRow label="Confirmar nueva contraseña *">
+          <FormRow label="Confirmar nueva contraseña">
             <div style={{ position: "relative" }}>
               <input 
                 style={{ ...styles.input, paddingRight: 38 }} 
@@ -281,7 +302,7 @@ export default function Configuracion() {
             {passSaved && (
               <span style={{ 
                 fontSize: 13, 
-                color: C.blueJeans, 
+                color: C.seafoam, 
                 fontWeight: 600, 
                 display: "flex", 
                 alignItems: "center", 
@@ -293,6 +314,86 @@ export default function Configuracion() {
           </div>
         </div>
       </div>
+
+      {/* ZONA PELIGROSA */}
+      <div style={{ ...styles.card, marginTop: 24, borderColor: "#730F1A" }}>
+        <h3 style={{ margin: "0 0 8px", fontSize: 16, fontWeight: 700, color: "#730F1A" }}>
+          Zona Peligrosa
+        </h3>
+        <p style={{ margin: "0 0 16px", fontSize: 13, color: C.textLight }}>
+          Una vez que elimines tu cuenta, no hay vuelta atrás. Ten cuidado.
+        </p>
+        <button 
+          onClick={() => setShowDeleteModal(true)} 
+          style={styles.btn("danger")}
+        >
+          <Trash2 size={15} /> Eliminar Cuenta
+        </button>
+      </div>
+
+      {/* MODAL DE CONFIRMACIÓN */}
+      {showDeleteModal && (
+        <div 
+          style={{ 
+            position: "fixed", 
+            inset: 0, 
+            background: "rgba(61,47,42,0.6)", 
+            zIndex: 1000, 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center" 
+          }} 
+          onClick={() => setShowDeleteModal(false)}
+        >
+          <div 
+            style={{ 
+              background: C.white, 
+              borderRadius: 16, 
+              width: 480, 
+              maxWidth: "92vw", 
+              padding: 24,
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)" 
+            }} 
+            onClick={e => e.stopPropagation()}
+          >
+            <h3 style={{ margin: "0 0 12px", fontSize: 18, fontWeight: 700, color: "#730F1A" }}>
+               Eliminar Cuenta Permanentemente
+            </h3>
+            <p style={{ margin: "0 0 16px", fontSize: 14, color: C.text, lineHeight: 1.6 }}>
+              Esta acción es <strong>irreversible</strong>. Se eliminarán todos tus datos:
+              materias, tareas, exámenes, apuntes y reportes.
+            </p>
+            <p style={{ margin: "0 0 8px", fontSize: 13, fontWeight: 600, color: C.text }}>
+              Escribe <strong>"ELIMINAR"</strong> para confirmar:
+            </p>
+            <input 
+              style={{ ...styles.input, marginBottom: 16 }} 
+              placeholder="ELIMINAR" 
+              value={deleteConfirm}
+              onChange={e => setDeleteConfirm(e.target.value)}
+            />
+            <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
+              <button 
+                onClick={() => { setShowDeleteModal(false); setDeleteConfirm(""); }} 
+                style={styles.btn("secondary")}
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={handleDeleteAccount}
+                disabled={loadingDelete || deleteConfirm !== "ELIMINAR"}
+                style={{
+                  ...styles.btn("danger"),
+                  opacity: (loadingDelete || deleteConfirm !== "ELIMINAR") ? 0.5 : 1,
+                  cursor: (loadingDelete || deleteConfirm !== "ELIMINAR") ? "not-allowed" : "pointer"
+                }}
+              >
+                <Trash2 size={15} /> {loadingDelete ? "Eliminando..." : "Eliminar Definitivamente"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

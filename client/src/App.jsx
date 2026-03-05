@@ -84,7 +84,7 @@ export default function App() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                color: C.coffee,
+                color: C.darkblue,
                 padding: 4,
                 borderRadius: 8,
                 display: "flex",
@@ -96,7 +96,7 @@ export default function App() {
               <Menu size={22} />
             </button>
             <div style={{ width: 1, height: 28, background: C.grayLight }} />
-            <span style={{ fontSize: 15, fontWeight: 700, color: C.coffee }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: C.darkblue }}>
               Gestor Académico
             </span>
           </div>
@@ -109,7 +109,7 @@ export default function App() {
                 width: 34,
                 height: 34,
                 borderRadius: 10,
-                background: `linear-gradient(135deg, ${C.seafoam}, ${C.seafoam})`,
+                background: `linear-gradient(135deg, ${C.blueJeans}, ${C.blueJeans})`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

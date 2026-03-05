@@ -1,8 +1,7 @@
 import {
   LayoutDashboard, BookOpen, CheckSquare, FileText, StickyNote,
-  Calendar, TrendingUp, FileDown, Settings, LogOut, BookMarked
+  Calendar, TrendingUp, FileDown, Settings, LogOut
 } from "lucide-react";
-import { colors as C } from "../../styles/colors";
 import { styles } from "../../styles/styles";
 
 export default function Sidebar({ collapsed, view, setView, onLogout }) {
@@ -22,9 +21,6 @@ export default function Sidebar({ collapsed, view, setView, onLogout }) {
     <div style={styles.sidebar(collapsed)}>
       <div style={styles.sidebarHeader}>
         <div style={styles.sidebarLogo(collapsed)}>
-          <div style={styles.logoCircle}>
-            <BookMarked size={18} color={C.darkblue} />
-          </div>
           {!collapsed && <span style={styles.logoText}>Gestor Académico</span>}
         </div>
       </div>

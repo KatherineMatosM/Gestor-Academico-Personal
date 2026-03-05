@@ -52,7 +52,7 @@ export const styles = {
   logoText: { 
     color: C.white, 
     fontWeight: 700, 
-    fontSize: 15, 
+    fontSize: 18, 
     whiteSpace: "nowrap", 
     overflow: "hidden" 
   },
@@ -134,7 +134,7 @@ export const styles = {
     transition: "all 0.2s",
     background: variant === "primary" ? `linear-gradient(135deg, ${C.blackCherry}, ${C.blackCherryDark})` : 
                 variant === "secondary" ? C.grayLight : 
-                variant === "danger" ? "#e85d5d" : "transparent",
+                variant === "danger" ? "#730F1A" : "transparent",
     color: variant === "primary" || variant === "danger" ? C.white : 
            variant === "secondary" ? C.text : C.blackCherry
   }),
