@@ -65,18 +65,23 @@ class AuthRepository {
 
   async updatePassword(id, hashedPassword) {
     const pool = await getPool();
-    const result = await pool
+    await pool
       .request()
       .input('id', id)
       .input('password', hashedPassword)
       .query(`
         UPDATE Usuario
         SET password = @password, updateAt = GETDATE()
-        OUTPUT INSERTED.*
         WHERE id = @id
       `);
+  }
 
-    return new Usuario(result.recordset[0]);
+  async delete(id) {
+    const pool = await getPool();
+    await pool
+      .request()
+      .input('id', id)
+      .query('DELETE FROM Usuario WHERE id = @id');
   }
 }
 
