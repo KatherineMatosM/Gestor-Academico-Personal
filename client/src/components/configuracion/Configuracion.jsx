@@ -56,8 +56,8 @@ export default function Configuracion() {
       return;
     }
     
-    if (passForm.nueva.length < 4) {
-      setPassError("La contraseña debe tener al menos 4 caracteres.");
+    if (passForm.nueva.length < 8) {
+      setPassError("La contraseña debe tener al menos 8 caracteres.");
       return;
     }
 

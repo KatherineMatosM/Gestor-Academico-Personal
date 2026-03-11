@@ -18,7 +18,7 @@ export default function Register({ onAuth, onSwitch }) {
     if (!validateRequired(form.email) || !validateEmail(form.email)) { setError("Email inválido."); return; }
     if (!validateRequired(form.password)) { setError("Ingresa una contraseña."); return; }
     if (form.password !== form.confirmPassword) { setError("Las contraseñas no coinciden."); return; }
-    if (form.password.length < 4) { setError("La contraseña debe tener al menos 4 caracteres."); return; }
+    if (form.password.length < 8) { setError("La contraseña debe tener al menos 8 caracteres."); return; }
 
     setLoading(true);
     try {
